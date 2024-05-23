@@ -1,0 +1,45 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  email     String?
+  id        String   @id @default(cuid())
+  password  String?
+  updatedAt DateTime @updatedAt
+  username  String?
+}
+
+model Agenda {
+  createdAt   DateTime  @default(now())
+  date        DateTime?
+  description String?
+  id          String    @id @default(cuid())
+  title       String?
+  updatedAt   DateTime  @updatedAt
+}
+
+model Reminder {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  isSent    Boolean?
+  message   String?
+  time      DateTime?
+  updatedAt DateTime  @updatedAt
+}
+
+model Event {
+  createdAt DateTime  @default(now())
+  endTime   DateTime?
+  id        String    @id @default(cuid())
+  location  String?
+  name      String?
+  startTime DateTime?
+  updatedAt DateTime  @updatedAt
+}
